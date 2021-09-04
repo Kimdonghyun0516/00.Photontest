@@ -6,8 +6,14 @@ using Photon.Realtime;
 
 public class ConnManager : MonoBehaviourPunCallbacks
 {
+    
     void Start()
     {
+
+    }
+    public void OnStart()
+    {
+        
         Debug.Log("Start");
         PhotonNetwork.GameVersion = "0.1";
 
@@ -32,6 +38,17 @@ public class ConnManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
+    }
+    public void JoinLobby()
+    {
+        if(PhotonNetwork.IsConnected == false)
+        {
+            Debug.Log("서버연결 안되어있음 JoinLobby Fail");
+
+            return;
+        }
+        
+        Debug.Log("JoinLobby");
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
     public override void OnJoinedLobby()
