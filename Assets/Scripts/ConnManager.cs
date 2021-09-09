@@ -48,7 +48,7 @@ public class ConnManager : MonoBehaviourPunCallbacks
             return;
         }
         
-        Debug.Log("JoinLobby");
+        Debug.Log("JoinLobby12");
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
     public override void OnJoinedLobby()
@@ -69,5 +69,4 @@ public class ConnManager : MonoBehaviourPunCallbacks
         Vector2 originPos = Random.insideUnitCircle * 2.0f;
         PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 0, originPos.y), Quaternion.identity);
     }
-
 }

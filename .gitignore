@@ -59,3 +59,14 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 .vsconfig
+Assets/Oculus
+Assets/Oculus.meta
+Assets/Fantasy Chess RPG Character - Arthur.meta
+Assets/black.mat
+Assets/black.mat.meta
+Packages/MainProject_Data
+Packages/MonoBleedingEdge
+Packages/MainProject.exe
+Packages/UnityCrashHandler64.exe
+Packages/UnityPlayer.dll
+Packages/WinPixEventRuntime.dll

@@ -4,7 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/VRphoton.unity
+    guid: d1e85b5f94134574c97330234171727b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 825d58e525d6e9a448f6b33b29a13821, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: be0129a9fa8f0fb4faabe5a321f6fc86, type: 2}
