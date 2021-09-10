@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Voice.Unity;
 using Photon.Realtime;
 
-public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallbacks
+public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallbacks, IInRoomCallbacks
 {
     public bool autoConnect = true;
 
@@ -58,6 +58,7 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
         this.enterRoomParams.RoomOptions.PublishUserId = this.publishUserId;
         this.enterRoomParams.RoomName = this.RoomName;
         this.voiceConnection.Client.OpJoinOrCreateRoom(this.enterRoomParams);
+        
         Debug.Log("Connected and JoinRoom");
     }
     public void OnDisconnected(DisconnectCause cause)
@@ -92,6 +93,8 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
 
     public void OnFriendListUpdate(List<FriendInfo> friendList)
     {
+        int friend= friendList.Count;
+        Debug.LogFormat("{0}",friend);
         Debug.Log("OnFriendListUpdate");
     }
 
@@ -120,10 +123,30 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
         Debug.Log("OnLeftRoom");
     }
 
+    public void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("OnPlayerEnteredRoom");
+        this.voiceConnection.Client.OpFindFriends(null);
+    }
+    public void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("OnPlayerLeftRoom");
+    }
+    public void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+
+    }
+    public void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+
+    }
+    public void OnMasterClientSwitched(Player newMasterClient)
+    {
+
+    }
+
     void Update()
     {
         
     }
-
-
 }
