@@ -13,6 +13,10 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
 
     private VoiceConnection voiceConnection;
 
+    public GameObject audioListenerObj;
+
+    public AudioListener listener;
+
     private readonly EnterRoomParams enterRoomParams = new EnterRoomParams
     {
         RoomOptions = new RoomOptions()
@@ -22,9 +26,16 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
     {
         Debug.Log("Start");
     }
+    public void MakeAudioListener()
+    {
+        audioListenerObj = new GameObject("AudioListenerObj");
+        listener = audioListenerObj.AddComponent<AudioListener>();
+        AudioListener.volume = 1.0f;
+    }
     private void Awake()
     {
         this.voiceConnection = this.GetComponent<VoiceConnection>();
+        MakeAudioListener();
         Debug.Log("Awake");
     }
     private void OnEnable()
@@ -33,6 +44,10 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
         Debug.Log("OnEnable");
         this.voiceConnection.ConnectUsingSettings();
         
+    }
+    private void OnDisable()
+    {
+        this.voiceConnection.Client.RemoveCallbackTarget(this);
     }
     public void OnConnected()
     {
