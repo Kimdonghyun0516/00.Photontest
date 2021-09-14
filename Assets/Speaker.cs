@@ -55,8 +55,15 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
     }
     public void OnConnectedToMaster()
     {
-        this.enterRoomParams.RoomOptions.PublishUserId = this.publishUserId;
+        RoomOptions ro = new RoomOptions()
+        {
+            IsVisible = true,
+            IsOpen = true,
+            MaxPlayers = 8
+        };
+        this.enterRoomParams.RoomOptions = ro;
         this.enterRoomParams.RoomName = this.RoomName;
+        this.enterRoomParams.Lobby = TypedLobby.Default;
         this.voiceConnection.Client.OpJoinOrCreateRoom(this.enterRoomParams);
         
         Debug.Log("Connected and JoinRoom");

@@ -6,7 +6,9 @@ using Photon.Realtime;
 
 public class ConnManager : MonoBehaviourPunCallbacks
 {
-    
+    public string RoomName;
+
+    public List<GameObject> players = new List<GameObject>();
     void Start()
     {
 
@@ -59,14 +61,33 @@ public class ConnManager : MonoBehaviourPunCallbacks
             IsOpen = true,
             MaxPlayers = 8
         };
-        PhotonNetwork.JoinOrCreateRoom("NetTest", ro, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(this.RoomName, ro, TypedLobby.Default);
     }
     public override void OnJoinedRoom()
     {
         Debug.Log("룸 입장!");
-
-        //반경 2m 이내에 Player프리팹을 생성한다.
-        Vector2 originPos = Random.insideUnitCircle * 2.0f;
-        PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 0, originPos.y), Quaternion.identity);
     }
+    public void PlayerEnter()
+    {
+        OnPlayerEnteredRoom(null);
+    }
+    public void PlayerExit()
+    {
+        OnPlayerLeftRoom(null);
+    }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log("OnPlayerEnteredRoom");
+        Vector2 originPos = Random.insideUnitCircle * 2.0f;
+        players.Add(PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 0, originPos.y), Quaternion.identity));
+    }
+    
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log("OnPlayerLeftRoom");
+        GameObject last = players[players.Count - 1];
+        players.Remove(last);
+        PhotonNetwork.Destroy(last);
+    }
+
 }
