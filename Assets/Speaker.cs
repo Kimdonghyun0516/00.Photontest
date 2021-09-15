@@ -13,7 +13,7 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
 
     private VoiceConnection voiceConnection;
 
-    public GameObject audioListenerObj;
+    //public GameObject audioListenerObj;
 
     public AudioListener listener;
 
@@ -28,8 +28,8 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
     }
     public void MakeAudioListener()
     {
-        audioListenerObj = new GameObject("AudioListenerObj");
-        listener = audioListenerObj.AddComponent<AudioListener>();
+        //audioListenerObj = new GameObject("AudioListenerObj");
+        //listener = audioListenerObj.AddComponent<AudioListener>();
         AudioListener.volume = 1.0f;
     }
     private void Awake()

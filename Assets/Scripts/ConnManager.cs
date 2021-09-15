@@ -80,6 +80,7 @@ public class ConnManager : MonoBehaviourPunCallbacks
         Debug.Log("OnPlayerEnteredRoom");
         Vector2 originPos = Random.insideUnitCircle * 2.0f;
         players.Add(PhotonNetwork.Instantiate("Player", new Vector3(originPos.x, 0, originPos.y), Quaternion.identity));
+        
     }
     
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -89,5 +90,4 @@ public class ConnManager : MonoBehaviourPunCallbacks
         players.Remove(last);
         PhotonNetwork.Destroy(last);
     }
-
 }
