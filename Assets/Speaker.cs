@@ -152,8 +152,8 @@ public class Speaker : MonoBehaviour, IConnectionCallbacks, IMatchmakingCallback
 
     }
 
-    void Update()
+    /*void Update()
     {
         
-    }
+    }*/
 }
